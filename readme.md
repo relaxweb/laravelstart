@@ -1,3 +1,7 @@
+## About this installation
+Laravel Start Project with user authentication 
+<p>This installation includes users role and permissions management.</p>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
