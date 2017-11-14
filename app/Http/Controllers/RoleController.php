@@ -34,8 +34,8 @@ class RoleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $permissions = Permission::all();//Get all permissions
-
+        //$permissions = Permission::all();//Get all permissions
+        $permissions = Permission::GetAllPermissions();
         return view('roles.create', ['permissions'=>$permissions]);
     }
 
@@ -91,8 +91,8 @@ class RoleController extends Controller {
      */
     public function edit($id) {
         $role = Role::findOrFail($id);
-        $permissions = Permission::all();
-
+        //$permissions = Permission::all();
+        $permissions = Permission::GetAllPermissions();
         return view('roles.edit', compact('role', 'permissions'));
     }
 

@@ -1,6 +1,8 @@
 @extends('layouts.app2')
 @section('content')
     <div class="container">
+        <?php //print_r($global['modules']); ?><!-- Auth::user()->hasPermissionTo('Administer roles & permissions') -->
+        @if($global['modules']['posts']->active)
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
@@ -19,11 +21,13 @@
                             </ul>
                         </div>
                     @endforeach
-                    </div>
-                    <div class="text-center">
-                        {!! $posts->links() !!}
-                    </div>
+                </div>
+                <div class="text-center">
+                    {!! $posts->links() !!}
                 </div>
             </div>
         </div>
+        @endif
+
+    </div>
 @endsection

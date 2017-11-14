@@ -11,22 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DashboardController@index');
 
 Auth::routes();
 
-Route::get('/', 'PostController@index')->name('home');
 
+// USERS ROLES AND PERMISSIONS
 Route::resource('users', 'UserController');
 
 Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
 
+
+// POSTS
+//Route::get('/', 'PostController@index')->name('home');
+
 Route::resource('posts', 'PostController');
 
+//Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('/home', 'HomeController@index')->name('home');
+// MENUS
+Route::get('menus', 'MenusController@index')->name('menus');

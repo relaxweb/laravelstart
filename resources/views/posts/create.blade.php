@@ -3,6 +3,7 @@
 @section('title', '| Create New Post')
 
 @section('content')
+  @if($global['modules']['posts']->active)
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
@@ -28,9 +29,11 @@
             <br>
 
             {{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block')) }}
+            <a href="{{ url('posts') }}" class="btn btn-default">Cancel</a>
+
             {{ Form::close() }}
         </div>
         </div>
     </div>
-
+ @endif
 @endsection

@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Menu;
+use App\Module;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -12,8 +15,13 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        //
+    { 
+       $global = [
+        "menu"=>Menu::GetMenu()->toArray(),
+        "modules"=>Module::AllFormated()
+       ];
+ 
+       view()->share('global', $global);
     }
 
     /**

@@ -8,7 +8,7 @@
 
 <div class='col-lg-4 col-lg-offset-4'>
 
-    <h1><i class='fa fa-user-plus'></i> Edit {{$user->name}}</h1>
+    <h1><i class='fa fa-user'></i> Edit {{$user->name}}</h1>
     <hr>
 
     {{ Form::model($user, array('route' => array('users.update', $user->id), 'method' => 'PUT')) }}{{-- Form model binding to automatically populate our fields with user data --}}
@@ -45,7 +45,8 @@
 
     </div>
 
-    {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+        <a href="{{ url('users') }}" class="btn btn-default">Cancel</a>
 
     {{ Form::close() }}
 

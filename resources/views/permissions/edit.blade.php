@@ -15,8 +15,8 @@
         {{ Form::text('name', null, array('class' => 'form-control')) }}
     </div>
     <br>
-    {{ Form::submit('Edit', array('class' => 'btn btn-primary')) }}
-
+    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+    <a href="{{ url('permissions') }}" class="btn btn-default">Cancel</a>
     {{ Form::close() }}
 
 </div>

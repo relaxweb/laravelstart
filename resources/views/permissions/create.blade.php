@@ -15,8 +15,19 @@
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', '', array('class' => 'form-control')) }}
-    </div><br>
-    @if(!$roles->isEmpty()) //If no roles exist yet
+    </div>
+    <br>
+    <div class="form-group">
+        {{ Form::label('module', 'Module') }}
+        <select id="module" class="form-control" name="module">
+        @foreach($modules as $module)
+            <option value="{{ $module->id }}">{{ $module->name }}</option>
+        @endforeach
+        </select>
+    </div>
+    <br>
+
+    @if(!$roles->isEmpty())
         <h4>Assign Permission to Roles</h4>
 
         @foreach ($roles as $role) 
@@ -26,8 +37,8 @@
         @endforeach
     @endif
     <br>
-    {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
-
+    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+     <a href="{{ url('permissions') }}" class="btn btn-default">Cancel</a>
     {{ Form::close() }}
 
 </div>

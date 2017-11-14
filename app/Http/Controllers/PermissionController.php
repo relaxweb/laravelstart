@@ -9,7 +9,8 @@ use Auth;
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use App\Module;
+//use Illuminate\Support\Facades\DB;
 use Session;
 
 class PermissionController extends Controller {
@@ -24,8 +25,14 @@ class PermissionController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function index() {
-        $permissions = Permission::all(); //Get all permissions
-
+        $permissions = Permission::GetAllPermissions(); //Get all permissions
+        // $permissions = DB::table('permissions')
+        // ->leftJoin('modules', 'modules.id', 'permissions.module_id')
+        // ->select('permissions.*', 'modules.name as module')
+        // ->where('modules.active', 1)
+        // ->orderBy('modules.weight', 'asc')
+        // ->get();
+        // ->where('menus.active', 1)
         return view('permissions.index')->with('permissions', $permissions);
     }
 
@@ -36,8 +43,8 @@ class PermissionController extends Controller {
     */
     public function create() {
         $roles = Role::get(); //Get all roles
-
-        return view('permissions.create')->with('roles', $roles);
+        $modules = Module::all(); // Get all modules
+        return view('permissions.create', ['roles'=>$roles, 'modules'=>$modules]);
     }
 
     /**
@@ -48,11 +55,13 @@ class PermissionController extends Controller {
     */
     public function store(Request $request) {
         $this->validate($request, [
-            'name'=>'required|max:40',
+            'name'=>'required|max:50',
         ]);
 
         $name = $request['name'];
+        $module_id = $request['module'];
         $permission = new Permission();
+        $permission->module_id = $module_id;
         $permission->name = $name;
 
         $roles = $request['roles'];
@@ -92,7 +101,7 @@ class PermissionController extends Controller {
     */
     public function edit($id) {
         $permission = Permission::findOrFail($id);
-
+        
         return view('permissions.edit', compact('permission'));
     }
 

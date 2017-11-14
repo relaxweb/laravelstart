@@ -42,7 +42,8 @@
 
     </div>
 
-    {{ Form::submit('Add', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
+        <a href="{{ url('users') }}" class="btn btn-default">Cancel</a>
 
     {{ Form::close() }}
 

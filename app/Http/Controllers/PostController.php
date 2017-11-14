@@ -25,8 +25,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderby('id', 'desc')->paginate(5); //show only 5 items at a time in descending order
-
-        return view('posts.index', compact('posts'));
+        return view('posts.index', ['posts'=>$posts]);
     }
 
     /**
@@ -73,8 +72,7 @@ class PostController extends Controller
     public function show($id)
     {
        $post = Post::findOrFail($id); //Find post of id = $id
-
-        return view ('posts.show', compact('post'));
+       return view ('posts.show', ['post'=>$post, 'id'=>$id]);
     }
 
     /**
@@ -86,7 +84,7 @@ class PostController extends Controller
     public function edit($id)
     {
       $post = Post::findOrFail($id);
-      return view('posts.edit', compact('post'));
+      return view('posts.edit', ['post'=>$post, 'id'=>$id]);
     }
 
     /**
